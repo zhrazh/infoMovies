@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>infoMovies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="mainHeader">
+        <h1><a id="appBranding" href="https://github.com/zhrazh/infoMovies/tree/main">infoMovies</a><h1>
+        <nav role="navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="log.html">+Log</a>
+            <a href="film.html">Film</a>
+            <a href="rek.html">Recommendation</a>
+            <a href="search.html">Search</a>
+            <a href="setting.html">Setting</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Search for Movies</h2>
+        <form id="searchForm">
+            <label for="searchInput">Enter movie title:</label>
+            <input type="text" id="searchInput" name="searchInput" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <section id="searchResults">
+            <!-- Search results will be displayed here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 infoMovies. All rights reserved.</p>
+    </footer>
+</body>
+</html>
