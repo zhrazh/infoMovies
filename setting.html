@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>infoMovies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="mainHeader">
+        <h1><a id="appBranding" href="https://github.com/zhrazh/infoMovies/tree/main">infoMovies</a><h1>
+        <nav role="navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="log.html">+Log</a>
+            <a href="film.html">Film</a>
+            <a href="rek.html">Recommendation</a>
+            <a href="search.html">Search</a>
+            <a href="setting.html">Setting</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Edit Profile</h2>
+        <form action="#" method="get">
+            <fieldset>
+                <legend>Informasi akun</legend>
+                <p>
+                    <label for="nama">Nama lengkap:</label><br>
+                    <input type="text" id="nama" name="nama" value="MovieHub User" required>
+                </p>
+                <p>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                </p>
+                <p>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                </p>
+                <p>
+                    <label for="bio">Bio:</label><br>
+                    <textarea id="bio" name="bio" rows="4" cols="40" placeholder="Ceritakan sedikit tentang dirimu"></textarea>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Genre favorit</legend>
+                <p>
+                    <input type="checkbox" id="favorit-action" name="genre-favorit" value="action">
+                    <label for="favorit-action">Action</label><br>
+                    <input type="checkbox" id="favorit-comedy" name="genre-favorit" value="comedy">
+                    <label for="favorit-comedy">Comedy</label><br>
+                    <input type="checkbox" id="favorit-drama" name="genre-favorit" value="drama">
+                    <label for="favorit-drama">Drama</label><br>
+                    <input type="checkbox" id="favorit-horror" name="genre-favorit" value="horror">
+                    <label for="favorit-horror">Horror</label><br>
+                    <input type="checkbox" id="favorit-romance" name="genre-favorit" value="romance">
+                    <label for="favorit-romance">Romance</label><br>
+                    <input type="checkbox" id="favorit-sci-fi" name="genre-favorit" value="sci-fi">
+                    <label for="favorit-sci-fi">Sci-Fi</label>
+                </p>
+            </fieldset>
+
+            <p><button type="submit">Simpan Perubahan</button></p>
+        </form>
+        <p>Catatan: perubahan profil belum disimpan secara permanen pada versi HTML ini.</p>
+    </main>
+
+    <footer>
+        <p>MovieHub</p>
+    </footer>
+</body>
+</html>
