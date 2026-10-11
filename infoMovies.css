@@ -1,0 +1,799 @@
+/* =========================================================
+   infoMovies | Shared Stylesheet
+   Dipakai oleh: index, film, log, rek, search, setting
+   ========================================================= */
+
+:root {
+    color-scheme: dark;
+    --bg: #0a0e16;
+    --surface: #151c29;
+    --surface-hover: #1d2939;
+    --surface-soft: #111824;
+    --text: #f6f7fa;
+    --muted: #a4aec0;
+    --accent: #f6b75d;
+    --accent-light: #ffd18b;
+    --border: #2a3547;
+    --radius: 18px;
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse 65% 32% at 92% 0%, rgba(246, 183, 93, 0.11), transparent 80%),
+        linear-gradient(180deg, #101624 0%, var(--bg) 320px);
+}
+
+a { color: var(--accent-light); text-decoration: none; transition: color .2s ease; }
+a:hover { color: #fff; }
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p { margin-top: 0; }
+h2 { font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height: 1.25; letter-spacing: -0.035em; }
+h3 { font-size: 1.3rem; line-height: 1.35; }
+p { color: var(--muted); }
+
+/* Navigasi utama */
+#mainHeader {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    width: 100%;
+    padding: 18px max(26px, calc((100vw - 1160px) / 2));
+    background: rgba(11, 16, 26, 0.93);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+#mainHeader h1 { font-size: 1.6rem; line-height: 1.2; margin: 0; white-space: nowrap; letter-spacing: -0.06em; }
+#appBranding { color: var(--text); font-weight: 800; }
+#appBranding::first-letter { color: var(--accent); }
+#appBranding:hover { color: var(--accent-light); }
+#mainHeader nav[role="navigation"] { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+#mainHeader nav a {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 12px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 0.91rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background .2s ease, color .2s ease;
+}
+#mainHeader nav a:hover, #mainHeader nav a[aria-current="page"] {
+    background: rgba(246, 183, 93, 0.12);
+    color: var(--accent-light);
+}
+
+/* Container halaman */
+main {
+    flex: 1;
+    width: min(100% - 52px, 1080px);
+    margin-inline: auto;
+    padding: 58px 0 88px;
+}
+main > h2 { margin-bottom: 25px; }
+footer {
+    margin-top: auto;
+    padding: 24px 20px;
+    border-top: 1px solid var(--border);
+    background: rgba(9, 14, 22, 0.6);
+    text-align: center;
+}
+footer p { margin: 0; font-size: .88rem; }
+
+/* Dashboard: kartu poster film */
+#dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+#dashboard > h2, #dashboard > p { grid-column: 1 / -1; }
+#dashboard > h2 { margin: 0; }
+#dashboard > p { max-width: 720px; margin: -12px 0 20px; font-size: 1.04rem; }
+#dashboard > article { min-width: 0; }
+#dashboard > article > a {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    gap: 23px;
+    height: 100%;
+    padding: 15px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    color: var(--text);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+#dashboard > article > a:hover {
+    transform: translateY(-5px);
+    background: var(--surface-hover);
+    border-color: rgba(246, 183, 93, .5);
+}
+#dashboard article img {
+    flex: 0 0 42%;
+    width: 42%;
+    height: 222px;
+    border-radius: 11px;
+    object-fit: cover;
+    object-position: center;
+}
+#dashboard article h3 {
+    min-width: 0;
+    margin: 0;
+    font-size: clamp(1.16rem, 2.1vw, 1.55rem);
+    overflow-wrap: anywhere;
+}
+#dashboard article h3::after {
+    content: "Lihat detail film  →";
+    display: block;
+    margin-top: 19px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    color: var(--accent);
+}
+#dashboard > hr { display: none; }
+
+/* Detail film (film.html) */
+main > article {
+    display: grid;
+    grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+    gap: 22px 38px;
+    align-items: start;
+}
+main > article > h2 { grid-column: 1 / -1; margin: 0 0 7px; }
+main > article > img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+main > article > dl {
+    display: grid;
+    grid-template-columns: 125px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 15px;
+    margin: 0;
+    padding: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+main > article dt { color: var(--muted); font-weight: 600; }
+main > article dd { margin: 0; font-weight: 600; }
+main > article > section {
+    grid-column: 1 / -1;
+    padding: 26px 30px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+main > article > section h3 { margin: 0 0 12px; }
+main > article > section p { margin: 0; }
+main > article > p { grid-column: 1 / -1; margin: 4px 0 0; }
+main > article > p a {
+    display: inline-block;
+    padding: 12px 19px;
+    background: var(--accent);
+    border-radius: 11px;
+    color: #1c170c;
+    font-weight: 800;
+    transition: transform .2s ease, background .2s ease;
+}
+main > article > p a:hover { background: var(--accent-light); color: #1c170c; transform: translateY(-2px); }
+
+/* Form log, pencarian dan pengaturan */
+main > form:not(#searchForm):not(.log-form) { max-width: 800px; }
+fieldset {
+    min-width: 0;
+    margin: 0 0 24px;
+    padding: 25px 28px 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+}
+legend { padding: 0 11px; color: var(--accent-light); font-size: 1.1rem; font-weight: 750; }
+/* HTML aslinya memakai <br> untuk jarak; CSS yang mengatur jaraknya. */
+fieldset > br, fieldset > p > br { display: none; }
+fieldset > input[type="text"], fieldset > input[type="date"],
+fieldset > select, fieldset > textarea { margin-bottom: 21px; }
+fieldset > label[for="watchedDate"], fieldset > label[for="review"] { margin-top: 16px; }
+form label { color: #dce3ed; font-size: .93rem; }
+form label[for="movieTitle"], form label[for="director"],
+form label[for="genre"], form label[for="watchedDate"],
+form label[for="rating"], form label[for="rate"],
+form label[for="review"], form label[for="nama"],
+form label[for="username"], form label[for="email"],
+form label[for="bio"], #searchForm label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 650;
+}
+input[type="text"], input[type="email"], input[type="date"],
+select, textarea {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 14px;
+    color: var(--text);
+    background: #0c131e;
+    border: 1px solid #344053;
+    border-radius: 10px;
+    font: inherit;
+    font-size: .98rem;
+    transition: border-color .2s ease, background .2s ease;
+}
+input[type="text"]:hover, input[type="email"]:hover,
+input[type="date"]:hover, select:hover, textarea:hover { border-color: #59677a; }
+input::placeholder, textarea::placeholder { color: #8794a8; }
+textarea { min-height: 120px; resize: vertical; }
+input[type="checkbox"], input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 7px 4px 7px 12px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+input[type="checkbox"]:first-of-type, input[type="radio"]:first-of-type { margin-left: 0; }
+input[type="checkbox"] + label, input[type="radio"] + label { display: inline; cursor: pointer; white-space: nowrap; }
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    padding: 11px 23px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #201809;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+}
+button:hover { background: var(--accent-light); transform: translateY(-2px); }
+button:active { transform: translateY(0); }
+
+/* Khusus search.html */
+#searchForm {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 12px;
+    max-width: 780px;
+    padding: 25px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+#searchForm label { grid-column: 1 / -1; margin-bottom: -5px; }
+#searchResults { margin-top: 24px; }
+#searchResults:empty {
+    display: grid;
+    place-items: center;
+    min-height: 180px;
+    padding: 28px;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+#searchResults:empty::before { content: "Hasil pencarian akan muncul di sini."; color: var(--muted); text-align: center; }
+
+/* Khusus rekomendasi: menu genre dan daftar film */
+main > nav[aria-label="Daftar genre"] ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0 34px;
+    padding: 0;
+    list-style: none;
+}
+main > nav[aria-label="Daftar genre"] a {
+    display: inline-block;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--accent-light);
+    background: var(--surface);
+    font-weight: 650;
+}
+main > nav[aria-label="Daftar genre"] a:hover { border-color: var(--accent); background: var(--surface-hover); }
+main > section:not(#dashboard):not(#searchResults) {
+    margin: 0 0 23px;
+    padding: 24px 28px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    scroll-margin-top: 115px;
+}
+main > section:not(#dashboard):not(#searchResults) h2 { font-size: 1.55rem; margin: 0 0 18px; }
+main > section:not(#dashboard):not(#searchResults) ul { list-style: none; margin: 0; padding: 0; }
+main > section:not(#dashboard):not(#searchResults) li + li { border-top: 1px solid var(--border); }
+main > section:not(#dashboard):not(#searchResults) li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 0;
+    color: #dfe7f1;
+}
+main > section:not(#dashboard):not(#searchResults) li a::after { content: "↗"; color: var(--accent); font-size: 1.15rem; }
+main > section:not(#dashboard):not(#searchResults) li a:hover { color: var(--accent-light); }
+
+/* Responsif: tablet dan handphone */
+@media (max-width: 900px) {
+    #mainHeader { flex-direction: column; align-items: flex-start; gap: 12px; }
+    #mainHeader nav[role="navigation"] { width: 100%; }
+    #mainHeader nav a { padding: 8px 10px; }
+    #dashboard article img { height: 205px; }
+    #dashboard > article > a { gap: 15px; }
+}
+@media (max-width: 650px) {
+    #mainHeader { position: static; padding: 18px 20px; }
+    #mainHeader h1 { font-size: 1.5rem; }
+    #mainHeader nav a { font-size: .84rem; }
+    main { width: min(100% - 32px, 1080px); padding: 34px 0 56px; }
+    #dashboard { grid-template-columns: 1fr; gap: 16px; }
+    #dashboard > p { margin: -5px 0 12px; }
+    #dashboard > article > a { min-height: 185px; padding: 12px; }
+    #dashboard article img { flex-basis: 38%; width: 38%; height: 190px; }
+    main > article { grid-template-columns: 1fr; gap: 18px; }
+    main > article > img { width: min(100%, 270px); }
+    main > article > dl { grid-template-columns: 110px minmax(0, 1fr); padding: 20px; }
+    main > article > section { padding: 20px; }
+    fieldset { padding: 20px 17px 24px; }
+    #searchForm { padding: 18px; }
+    main > section:not(#dashboard):not(#searchResults) { padding: 20px; scroll-margin-top: 16px; }
+}
+@media (max-width: 390px) {
+    #mainHeader nav a { padding: 7px 8px; }
+    #searchForm { grid-template-columns: 1fr; }
+    #searchForm button { width: 100%; }
+    #dashboard article h3 { font-size: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+/* =============================================================
+   LOG.HTML ASLI - tanpa perubahan struktur HTML
+   Menggunakan selector dari input #movieTitle, #director, dll.
+   ============================================================= */
+main:has(> form #movieTitle) {
+    width: min(100% - 52px, 990px);
+    padding-top: 65px;
+}
+main:has(> form #movieTitle) > h2 {
+    margin: 0 0 29px;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    letter-spacing: -.05em;
+}
+main:has(> form #movieTitle) > h2::before {
+    content: "PERSONAL MOVIE JOURNAL";
+    display: block;
+    margin-bottom: 15px;
+    color: var(--accent);
+    font-size: .71rem;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: .17em;
+}
+main > form:has(#movieTitle) { max-width: none !important; }
+main > form > fieldset:has(#movieTitle) {
+    display: grid;
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+    column-gap: 14px;
+    row-gap: 11px;
+    min-width: 0;
+    margin: 0;
+    padding: 34px 36px 35px;
+    border: 1px solid #344154;
+    border-radius: 22px;
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(246,183,93,.085), transparent 62%),
+        linear-gradient(145deg, #17202f 0%, #111925 90%);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, .23);
+}
+main > form > fieldset:has(#movieTitle) > legend {
+    padding: 0 13px;
+    color: var(--accent-light);
+    font-size: 1.06rem;
+    font-weight: 750;
+}
+/* <br> asli tidak dihapus dari HTML, hanya dinonaktifkan secara visual. */
+main > form > fieldset:has(#movieTitle) > br { display: none; }
+main > form > fieldset:has(#movieTitle) > label {
+    margin: 0;
+    font-size: .91rem;
+    font-weight: 650;
+    line-height: 1.4;
+    color: #e5ebf3;
+}
+main > form > fieldset:has(#movieTitle) > :is(input[type="text"], input[type="date"], select, textarea) {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    margin: 0;
+    padding: 11px 14px;
+    color: var(--text);
+    background: #0c1420;
+    border: 1px solid #3c4b60;
+    border-radius: 11px;
+    font: inherit;
+    transition: border-color .2s ease, background .2s ease;
+}
+main > form > fieldset:has(#movieTitle) > :is(input[type="text"], input[type="date"], select, textarea):hover {
+    border-color: #718099;
+}
+main > form > fieldset:has(#movieTitle) > :is(input[type="text"], input[type="date"], select, textarea):focus {
+    border-color: var(--accent);
+}
+
+/* Baris pertama: judul film dan sutradara */
+main > form > fieldset:has(#movieTitle) > label[for="movieTitle"] { grid-area: 1 / 1 / 2 / 8; }
+main > form > fieldset:has(#movieTitle) > #movieTitle { grid-area: 2 / 1 / 3 / 8; }
+main > form > fieldset:has(#movieTitle) > label[for="director"] { grid-area: 1 / 8 / 2 / 15; }
+main > form > fieldset:has(#movieTitle) > #director { grid-area: 2 / 8 / 3 / 15; }
+
+/* Pilihan genre: checkbox asli + label yang langsung bersebelahan */
+main > form > fieldset:has(#movieTitle) > label[for="genre"] {
+    grid-area: 3 / 1 / 4 / -1;
+    padding-top: 22px;
+    margin-top: 9px;
+    border-top: 1px solid var(--border);
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"],
+main > form > fieldset:has(#movieTitle) > input[name="rate"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    min-height: 43px;
+    padding: 9px 7px;
+    border: 1px solid #425168;
+    border-radius: 10px;
+    background: #1b2636;
+    color: #dce4ee;
+    cursor: pointer;
+    text-align: center;
+    font-size: .83rem;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label::before {
+    content: "+";
+    color: var(--accent);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"]:checked + label,
+main > form > fieldset:has(#movieTitle) > input[name="rate"]:checked + label {
+    background: var(--accent);
+    color: #221909;
+    border-color: var(--accent);
+    font-weight: 800;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"]:checked + label::before {
+    content: "✓";
+    color: #221909;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"]:focus-visible + label,
+main > form > fieldset:has(#movieTitle) > input[name="rate"]:focus-visible + label {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label:hover,
+main > form > fieldset:has(#movieTitle) > input[name="rate"] + label:hover {
+    border-color: var(--accent);
+    background: #2b3541;
+}
+main > form > fieldset:has(#movieTitle) > input[name="genre_input"]:checked + label:hover,
+main > form > fieldset:has(#movieTitle) > input[name="rate"]:checked + label:hover {
+    background: var(--accent-light);
+    color: #221909;
+}
+main > form > fieldset:has(#movieTitle) > label[for="action"] { grid-area: 4 / 1 / 5 / 3; }
+main > form > fieldset:has(#movieTitle) > label[for="comedy"] { grid-area: 4 / 3 / 5 / 5; }
+main > form > fieldset:has(#movieTitle) > label[for="drama"] { grid-area: 4 / 5 / 5 / 7; }
+main > form > fieldset:has(#movieTitle) > label[for="horror"] { grid-area: 4 / 7 / 5 / 9; }
+main > form > fieldset:has(#movieTitle) > label[for="romance"] { grid-area: 4 / 9 / 5 / 11; }
+main > form > fieldset:has(#movieTitle) > label[for="sci-fi"] { grid-area: 4 / 11 / 5 / 13; }
+main > form > fieldset:has(#movieTitle) > label[for="thriller"] { grid-area: 4 / 13 / 5 / 15; }
+
+/* Waktu menonton dan klasifikasi rating */
+main > form > fieldset:has(#movieTitle) > label[for="watchedDate"] { grid-area: 5 / 1 / 6 / 8; margin-top: 17px; }
+main > form > fieldset:has(#movieTitle) > #watchedDate { grid-area: 6 / 1 / 7 / 8; }
+main > form > fieldset:has(#movieTitle) > label[for="rating"] { grid-area: 5 / 8 / 6 / 15; margin-top: 17px; }
+main > form > fieldset:has(#movieTitle) > #rating { grid-area: 6 / 8 / 7 / 15; }
+
+/* Penilaian film 1-5 memakai input radio bawaan HTML */
+main > form > fieldset:has(#movieTitle) > label[for="rate"] {
+    grid-area: 7 / 1 / 8 / -1;
+    padding-top: 19px;
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+}
+main > form > fieldset:has(#movieTitle) > input[name="rate"] + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 53px;
+    padding: 10px;
+    background: #1b2636;
+    border: 1px solid #425168;
+    border-radius: 11px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+main > form > fieldset:has(#movieTitle) > label[for="1"] { grid-area: 8 / 1 / 9 / 3; }
+main > form > fieldset:has(#movieTitle) > label[for="2"] { grid-area: 8 / 3 / 9 / 5; }
+main > form > fieldset:has(#movieTitle) > label[for="3"] { grid-area: 8 / 5 / 9 / 7; }
+main > form > fieldset:has(#movieTitle) > label[for="4"] { grid-area: 8 / 7 / 9 / 9; }
+main > form > fieldset:has(#movieTitle) > label[for="5"] { grid-area: 8 / 9 / 9 / 11; }
+
+/* Review dan tombol */
+main > form > fieldset:has(#movieTitle) > label[for="review"] { grid-area: 9 / 1 / 10 / -1; margin-top: 18px; }
+main > form > fieldset:has(#movieTitle) > #review { grid-area: 10 / 1 / 11 / -1; min-height: 130px; resize: vertical; }
+main > form > fieldset:has(#movieTitle) > button {
+    grid-area: 11 / 1 / 12 / -1;
+    justify-self: end;
+    margin-top: 21px;
+    min-width: 180px;
+    min-height: 51px;
+    box-shadow: 0 10px 27px rgba(246, 183, 93, .13);
+}
+
+/* =============================================================
+   REK.HTML ASLI - nav[aria-label="Daftar genre"] & section ids
+   Tidak menambah class pada HTML.
+   ============================================================= */
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) {
+    width: min(100% - 52px, 1160px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-content: start;
+    align-items: stretch;
+    gap: 22px;
+    padding-top: 63px;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > p {
+    grid-column: 1 / -1;
+    position: relative;
+    max-width: none;
+    margin: 0;
+    padding: 53px 35px 37px;
+    border: 1px solid #344154;
+    border-radius: 21px;
+    background:
+        radial-gradient(ellipse 48% 150% at 100% 0%, rgba(246, 183, 93, .13), transparent 85%),
+        linear-gradient(135deg, #1a2636, #111925);
+    color: #e0e7f1;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.65;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > p::before {
+    content: "EXPLORE YOUR NEXT FAVORITE";
+    display: block;
+    margin: 0 0 16px;
+    color: var(--accent);
+    font-size: .72rem;
+    font-weight: 850;
+    letter-spacing: .16em;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] {
+    grid-column: 1 / -1;
+    padding: 16px 19px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: #121b29;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 41px;
+    padding: 9px 20px;
+    border: 1px solid #40506a;
+    border-radius: 10px;
+    background: #202b3b;
+    color: #f2f5f8;
+    font-weight: 700;
+    font-size: .91rem;
+    transition: background .2s ease, border-color .2s ease;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] a:hover,
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] a:focus-visible {
+    border-color: var(--accent);
+    color: #231b0d;
+    background: var(--accent);
+}
+
+/* Kartu-kartu dibuat langsung dari section #action, #adventure, #comedy */
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 365px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #344154;
+    border-radius: 18px;
+    background: #17202f;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, .15);
+    scroll-margin-top: 120px;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section:hover {
+    transform: translateY(-5px);
+    border-color: #657084;
+    box-shadow: 0 28px 44px rgba(0, 0, 0, .23);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section::before {
+    content: "CURATED SELECTION  /  03 FILMS";
+    padding: 24px 23px 0;
+    background: linear-gradient(130deg, #4b2a32, #272031);
+    color: rgba(255,255,255,.7);
+    font-size: .68rem;
+    font-weight: 850;
+    letter-spacing: .11em;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > #adventure::before {
+    background: linear-gradient(130deg, #184a53, #18303e);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > #comedy::before {
+    background: linear-gradient(130deg, #65503a, #353036);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section h2 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 14px 23px 35px;
+    background: linear-gradient(130deg, #4b2a32, #272031);
+    color: #fff;
+    font-size: clamp(1.75rem, 2.4vw, 2.3rem);
+    letter-spacing: -.035em;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > #adventure h2 {
+    background: linear-gradient(130deg, #184a53, #18303e);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > #comedy h2 {
+    background: linear-gradient(130deg, #65503a, #353036);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section ul {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 10px 21px 21px;
+    list-style: none;
+    counter-reset: movie-number;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li {
+    min-width: 0;
+    counter-increment: movie-number;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li + li {
+    border-top: 1px solid var(--border);
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 77px;
+    padding: 12px 0;
+    color: #e8eef7;
+    font-size: .93rem;
+    font-weight: 650;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    transition: color .2s ease;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li a::before {
+    content: counter(movie-number, decimal-leading-zero);
+    flex-shrink: 0;
+    color: #8796ac;
+    font-size: .78rem;
+    font-weight: 850;
+    letter-spacing: .04em;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li a::after {
+    content: "↗";
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 1.15rem;
+}
+main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section li a:hover { color: var(--accent-light); }
+
+/* Responsive rules for the ORIGINAL HTML */
+@media (max-width: 990px) {
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    main:has(> form #movieTitle) { width: min(100% - 32px, 990px); padding-top: 39px; }
+    main:has(> form #movieTitle) > h2 { font-size: clamp(2rem, 6vw, 3.1rem); }
+    main > form > fieldset:has(#movieTitle) {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 11px;
+        padding: 24px 20px 28px;
+    }
+    /* Reset desktop grid placement but preserve display order. */
+    main > form > fieldset:has(#movieTitle) > label:not([for="action"]):not([for="comedy"]):not([for="drama"]):not([for="horror"]):not([for="romance"]):not([for="sci-fi"]):not([for="thriller"]):not([for="1"]):not([for="2"]):not([for="3"]):not([for="4"]):not([for="5"]),
+    main > form > fieldset:has(#movieTitle) > :is(input[type="text"], input[type="date"], select, textarea, button) {
+        grid-row: auto !important;
+        grid-column: 1 / -1 !important;
+        margin-top: 0;
+    }
+    main > form > fieldset:has(#movieTitle) > label[for="genre"],
+    main > form > fieldset:has(#movieTitle) > label[for="rate"] { margin-top: 12px; padding-top: 20px; }
+    main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label,
+    main > form > fieldset:has(#movieTitle) > input[name="rate"] + label {
+        grid-area: auto;
+        grid-column: span 2;
+    }
+    main > form > fieldset:has(#movieTitle) > label[for="review"] { margin-top: 9px !important; }
+    main > form > fieldset:has(#movieTitle) > button { width: 100%; margin-top: 15px; }
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) {
+        width: min(100% - 32px, 1160px);
+        padding-top: 36px;
+    }
+}
+@media (max-width: 660px) {
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) { grid-template-columns: 1fr; gap: 16px; }
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > p { padding: 38px 21px 26px; }
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > nav[aria-label="Daftar genre"] { padding: 15px; }
+    main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > section { min-height: 0; scroll-margin-top: 16px; }
+}
+@media (max-width: 470px) {
+    main > form > fieldset:has(#movieTitle) { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 22px 16px 24px; }
+    main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label,
+    main > form > fieldset:has(#movieTitle) > input[name="rate"] + label { grid-column: span 2; }
+    main > form > fieldset:has(#movieTitle) > input[name="genre_input"] + label { font-size: .85rem; }
+}
