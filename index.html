@@ -39,36 +39,8 @@
             <p>Welcome to infoMovies! Here you can find information about your favorite movies, manage your movie logs,
                 and explore new films.</p>
 
-            <div class="row g-4 dashboard-grid">
-                <div class="col-12 col-lg-6">
-                    <article class="movie-card h-100">
-                        <a class="movie-card-link" href="film.html">
-                            <img class="movie-poster" src="images/interstellar.jpg" alt="Interstellar Movie Poster"
-                                width="200">
-                            <div class="movie-card-copy">
-                                <span class="movie-kicker">FEATURED MOVIE</span>
-                                <h3>Interstellar (2014)</h3>
-                                <p class="movie-meta">Sci-Fi · Drama · Adventure</p>
-                                <span class="movie-rating"><span aria-hidden="true">★</span> 8.6/10</span>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <article class="movie-card h-100">
-                        <a class="movie-card-link" href="film.html">
-                            <img class="movie-poster" src="images/inception.jpg" alt="Inception Movie Poster"
-                                width="200">
-                            <div class="movie-card-copy">
-                                <span class="movie-kicker">POPULAR PICK</span>
-                                <h3>Inception (2010)</h3>
-                                <p class="movie-meta">Sci-Fi · Thriller · Action</p>
-                                <span class="movie-rating"><span aria-hidden="true">★</span> 8.8/10</span>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </div>
+            <p id="movieSummary" class="movie-summary" aria-live="polite"></p>
+            <div id="movieCatalog" class="row g-4 dashboard-grid" aria-live="polite"></div>
         </section>
     </main>
 
@@ -76,6 +48,7 @@
         <p>&copy; 2026 infoMovies. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="infoMovies.js"></script>
 </body>
 
