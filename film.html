@@ -34,34 +34,31 @@
     </header>
 
     <main>
-        <article>
-            <h2>Interstellar (2014)</h2>
-            <img class="img-fluid" src="images/interstellar.jpg" alt="Interstellar Movie Poster" width="200">
-            <dl>
-                <dt>Genre</dt>
-                <dd>Science Fiction, Drama</dd>
-                <dt>Tahun rilis</dt>
-                <dd>2014</dd>
-                <dt>Durasi</dt>
-                <dd>169 menit</dd>
-                <dt>Sutradara</dt>
-                <dd>Christopher Nolan</dd>
+        <article id="filmDetail" class="movie-detail">
+            <h2 id="detailTitle">Interstellar (2014)</h2>
+            <div class="detail-poster-wrap">
+                <img id="detailPoster" class="img-fluid detail-poster" src="images/interstellar.jpg" alt="Interstellar Movie Poster">
+                <div id="detailPosterPlaceholder" class="movie-poster-placeholder detail-poster-placeholder d-none" aria-hidden="true">
+                    <span class="poster-icon">🎬</span>
+                    <strong id="detailPosterTitle">Movie</strong>
+                </div>
+            </div>
+            <dl id="detailFacts" class="detail-facts">
+                <dt>Genre</dt><dd>Science Fiction, Drama</dd>
+                <dt>Tahun rilis</dt><dd>2014</dd>
+                <dt>Durasi</dt><dd>169 menit</dd>
+                <dt>Sutradara</dt><dd>Christopher Nolan</dd>
+                <dt>Rating</dt><dd>★ 8.6/10</dd>
             </dl>
-
-            <section aria-labelledyby="sinopsis-heading">
-                <h3 id="sinopsis-heading">Sinopsis</h3>
-                <p>Seorang mantan pilot NASA, Cooper, direkrut untuk memimpin misi luar angkasa untuk mencari planet
-                    baru yang dapat dihuni manusia, karena Bumi menghadapi krisis lingkungan yang mengancam kelangsungan
-                    hidup umat manusia.</p>
+            <section class="detail-section">
+                <h3>Sinopsis</h3>
+                <p id="detailSynopsis">Seorang mantan pilot NASA, Cooper, direkrut untuk memimpin misi luar angkasa mencari planet baru yang dapat dihuni manusia.</p>
             </section>
-
-            <section aria-labelledyby="trailer-heading">
-                <h3 id="trailer-heading">Trailer</h3>
-                <p><a href="https://youtu.be/zSWdZVtXT7E?si=fY_g_SLVRTDjlBg-" target="_blank"
-                        rel="noopener noreferrer">Interstellar</a></p>
+            <section class="detail-section" id="detailTrailerSection">
+                <h3>Trailer</h3>
+                <p id="detailTrailer"><a href="https://youtu.be/zSWdZVtXT7E" target="_blank" rel="noopener noreferrer">Tonton trailer Interstellar</a></p>
             </section>
-
-            <p><a class="btn-warning" href="log.html">Tulis review untuk film ini</a></p>
+            <p><a id="detailLogLink" class="btn btn-warning" href="log.html?title=Interstellar">Tulis review untuk film ini</a></p>
         </article>
     </main>
 
@@ -69,6 +66,7 @@
         <p>&copy; 2026 infoMovies. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="infoMovies.js"></script>
 </body>
 
