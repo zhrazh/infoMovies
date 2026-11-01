@@ -34,47 +34,28 @@
     </header>
 
     <main>
-        <p>Pilih genre favoritmu untuk mendapatkan rekomendasi film yang sesuai dengan selera kamu.</p>
-        <nav aria-label="Daftar genre">
-            <ul>
-                <li><a href="#action">Action</a></li>
-                <li><a href="#comedy">Comedy</a></li>
-                <li><a href="#drama">Drama</a></li>
-            </ul>
-        </nav>
-
-        <section id="action" aria-labelledy="action-heading">
-            <h2 id="action-heading">Action</h2>
-            <ul>
-                <li><a href="film.html">Mad Max: Fury Road (2015)</a></li>
-                <li><a href="film.html">John Wick (2014)</a></li>
-                <li><a href="film.html">The Dark Knight (2008)</a></li>
-            </ul>
-        </section>
-
-        <section id="adventure" aria-labelledy="adventure-heading">
-            <h2 id="adventure-heading">Adventure</h2>
-            <ul>
-                <li><a href="film.html">The Lord of the Rings: The Fellowship of the Ring (2001)</a></li>
-                <li><a href="film.html">Jurassic Park (1993)</a></li>
-                <li><a href="film.html">Indiana Jones and the Raiders of the Lost Ark (1981)</a></li>
-            </ul>
-        </section>
-
-        <section id="comedy" aria-labelledy="comedy-heading">
-            <h2 id="comedy-heading">Comedy</h2>
-            <ul>
-                <li><a href="film.html">Superbad (2007)</a></li>
-                <li><a href="film.html">The Hangover (2009)</a></li>
-                <li><a href="film.html">Bridesmaids (2011)</a></li>
-            </ul>
-        </section>
+        <h2>Movie Recommendations</h2>
+        <p>Pilih genre favoritmu untuk melihat rekomendasi film dari katalog infoMovies.</p>
+        <div class="genre-filter-bar d-flex flex-wrap gap-2 mb-4" role="group" aria-label="Filter genre rekomendasi">
+            <button type="button" class="btn btn-warning genre-filter active" data-genre="All" aria-pressed="true">All</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Action" aria-pressed="false">Action</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Adventure" aria-pressed="false">Adventure</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Comedy" aria-pressed="false">Comedy</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Crime" aria-pressed="false">Crime</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Drama" aria-pressed="false">Drama</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Fantasy" aria-pressed="false">Fantasy</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Sci-Fi" aria-pressed="false">Sci-Fi</button>
+            <button type="button" class="btn btn-outline-warning genre-filter" data-genre="Thriller" aria-pressed="false">Thriller</button>
+        </div>
+        <p id="recommendationSummary" class="movie-summary" aria-live="polite"></p>
+        <section id="recommendationResults" class="row g-4" aria-live="polite"></section>
     </main>
 
     <footer>
         <p>&copy; 2026 infoMovies. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="infoMovies.js"></script>
 </body>
 
