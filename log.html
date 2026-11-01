@@ -33,7 +33,7 @@
 
     <main>
         <h2>Add to your log..</h2>
-        <form>
+        <form id="movieLogForm" novalidate>
             <fieldset>
                 <legend>Movie Log Entry</legend>
                 <label for="movieTitle">Movie Title:</label>
@@ -86,15 +86,36 @@
                 <label for="review">Review:</label><br>
                 <textarea class="form-control" id="review" name="review" rows="5" cols="50"></textarea><br><br>
 
-                <button class="btn-warning" type="submit">Add to Log</button>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    <button class="btn btn-warning" type="submit">Add to Log</button>
+                    <button class="btn btn-outline-light" type="reset" id="resetLogForm">Reset Form</button>
+                </div>
+                <p id="logFeedback" class="form-feedback mt-3 mb-0" role="status" style="display:none"></p>
             </fieldset>
         </form>
+
+        <section id="logHistoryPanel" class="log-history-panel mt-5">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+                <div>
+                    <h2 class="h3 mb-1">My Movie Logs</h2>
+                    <p class="mb-0">Daftar film yang kamu catat pada sesi browser ini.</p>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" id="toggleLogHistory" class="btn btn-outline-warning">Hide/Show Logs</button>
+                    <button type="button" id="clearLogs" class="btn btn-outline-danger">Clear All</button>
+                </div>
+            </div>
+            <p id="logCount" class="movie-summary" aria-live="polite">Belum ada log.</p>
+            <div id="logList" class="log-list"></div>
+            <p id="emptyLogs" class="empty-state">Belum ada film yang dicatat. Isi form di atas untuk menambahkan log pertamamu.</p>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2026 infoMovies. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="infoMovies.js"></script>
 </body>
 </html>
