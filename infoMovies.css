@@ -983,3 +983,109 @@ main:has(> #action):has(> #adventure):has(> nav[aria-label="Daftar genre"]) > se
     #dashboard .movie-card-link { gap: 11px; }
     #dashboard article img { height: 165px; }
 }
+
+
+/* =========================================================
+   Tugas 5: dynamic content, search, recommendations, and logs
+   ========================================================= */
+.movie-summary { color: var(--muted); font-size: .92rem; margin: 0 0 18px; }
+.movie-card-actions { padding: 0 14px 14px; }
+.movie-card-actions .btn { font-weight: 700; }
+.movie-poster-placeholder {
+    flex: 0 0 42%;
+    width: 42%;
+    min-height: 222px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 30% 20%, rgba(246,183,93,.24), transparent 38%),
+        linear-gradient(145deg, #26344a, #0c131e 75%);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+}
+.movie-poster-placeholder .poster-icon { font-size: 2rem; }
+.movie-poster-placeholder strong { font-size: .94rem; line-height: 1.3; }
+.movie-poster-placeholder small { color: var(--accent-light); }
+.movie-grid-item { min-width: 0; }
+#searchForm { max-width: 850px; }
+.search-tools {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.search-tools label { display: block; margin-bottom: 9px; font-weight: 700; }
+.helper-panel {
+    padding: 14px 16px;
+    color: var(--muted);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+}
+.form-feedback { display: none; padding: 11px 14px; border-radius: 9px; font-size: .92rem; }
+.feedback-success { display: block; color: #c9f7d4; background: rgba(42, 132, 75, .16); border: 1px solid rgba(83, 190, 118, .4); }
+.feedback-error { display: block; color: #ffd4d4; background: rgba(177, 50, 50, .16); border: 1px solid rgba(226, 94, 94, .4); }
+.empty-state {
+    padding: 24px;
+    color: var(--muted);
+    background: var(--surface-soft);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+}
+.genre-filter-bar .btn { border-radius: 999px; padding-inline: 17px; font-weight: 700; }
+.log-history-panel {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.log-list { display: grid; gap: 12px; }
+.log-entry {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 17px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+.log-entry h3 { margin-bottom: 6px; font-size: 1.1rem; }
+.log-entry p { overflow-wrap: anywhere; }
+.log-entry small { color: var(--accent-light); }
+.log-review { white-space: pre-wrap; }
+.movie-detail { grid-template-columns: minmax(190px, 260px) minmax(0, 1fr); }
+.detail-poster-wrap { min-width: 0; }
+.detail-poster { width: 100%; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.detail-poster-placeholder { width: 100%; min-height: 340px; flex-basis: auto; }
+.detail-facts { align-self: start; }
+.detail-section {
+    grid-column: 1 / -1;
+    padding: 26px 30px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.detail-section h3 { margin-bottom: 12px; }
+.detail-section p { margin-bottom: 0; }
+#detailLogLink { display: inline-block; text-decoration: none; }
+#recommendationResults .movie-card { height: 100%; }
+@media (max-width: 650px) {
+    .movie-poster-placeholder { min-height: 190px; flex-basis: 38%; width: 38%; }
+    .search-tools, .log-history-panel { padding: 17px; }
+    .log-entry { flex-direction: column; }
+    .detail-poster-placeholder { width: 100%; min-height: 260px; flex-basis: auto; }
+    .detail-section { padding: 20px; }
+}
+@media (max-width: 390px) {
+    .movie-poster-placeholder { min-height: 165px; }
+}
