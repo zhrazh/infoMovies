@@ -33,7 +33,7 @@
 
     <main>
         <h2>Edit Profile</h2>
-        <form action="#" method="get">
+        <form id="profileForm" action="#" method="get">
             <fieldset>
                 <legend>Informasi akun</legend>
                 <p>
@@ -77,15 +77,17 @@
                 </p>
             </fieldset>
 
-            <p><button class="btn-warning" type="submit">Simpan Perubahan</button></p>
+            <p><button class="btn btn-warning" type="submit">Simpan Perubahan</button></p>
+            <p id="profileFeedback" class="form-feedback" role="status" style="display:none"></p>
         </form>
-        <p>Catatan: perubahan profil belum disimpan secara permanen pada versi HTML ini.</p>
+        <p class="small text-muted">Catatan: data profil disimpan secara lokal pada browser (jika penyimpanan browser tersedia), belum ke backend/database.</p>
     </main>
 
     <footer>
         <p>&copy; 2026 infoMovies. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="infoMovies.js"></script>
 </body>
 </html>
